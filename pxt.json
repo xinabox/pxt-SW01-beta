@@ -1,0 +1,18 @@
+{
+    "name": "SW01",
+    "version": "1.0.0",
+    "description": "XinaBox SW01 Package for micro:bit. Digital Pressure, Temperature and Humidity Sensor",
+    "license": "MIT",
+    "dependencies": {
+        "core": "*"
+    },
+    "files": [
+        "README.md",
+        "sw01.ts",
+        "_locales/zh/SW01-strings.json"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "public": true
+}
