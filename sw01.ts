@@ -126,7 +126,7 @@ namespace SW01 {
      * get pressure
      */
     //% blockId="BME280_GET_PRESSURE" block="pressure %u"
-    //% weight=80 blockGap=8
+    //% weight=84 blockGap=8
     export function pressure(u: BME280_P): number {
         get();
         if (u == BME280_P.Pa) return P;
@@ -137,7 +137,7 @@ namespace SW01 {
      * get temperature
      */
     //% blockId="BME280_GET_TEMPERATURE" block="temperature %u"
-    //% weight=80 blockGap=8
+    //% weight=88 blockGap=8
     export function temperature(u: BME280_T): number {
         get();
         if (u == BME280_T.T_C) return T;
@@ -145,29 +145,29 @@ namespace SW01 {
     }
 
     /**
-     * get humidity
+     * get the relative humidity (%)
      */
     //% blockId="BME280_GET_HUMIDITY" block="humidity"
-    //% weight=80 blockGap=8
+    //% weight=86 blockGap=8
     export function humidity(): number {
         get();
         return H;
     }
 
     /**
-     * power on
+     * turn the SW01 on
      */
     //% blockId="BME280_POWER_ON" block="Power On"
-    //% weight=61 blockGap=8
+    //% weight=98 blockGap=8
     export function PowerOn() {
         setreg(0xF4, 0x2F)
     }
 
     /**
-     * power off
+     * turn the SW01 off
      */
     //% blockId="BME280_POWER_OFF" block="Power Off"
-    //% weight=60 blockGap=8
+    //% weight=96 blockGap=8
     export function PowerOff() {
         setreg(0xF4, 0)
     }
@@ -176,12 +176,34 @@ namespace SW01 {
      * Calculate Dewpoint
      */
     //% block="Dewpoint"
-    //% weight=60 blockGap=8
+    //% weight=76 blockGap=8
     export function Dewpoint(): number {
         get();
         return T - Math.idiv(100 - H, 5)
     }
 
+    /**
+     * calaulate altitude use pressure and temperature
+     */
+    //% block="altitude"
+    //% weight=74 blockGap=8
+    export function altitude(): number {
+        get()
+        return (apow(101325 / P, 1 / 5.257) - 1.0) * (T + 273.15) / 0.0065
+    }
+
+    /**
+     * calaulate cloud base using altitude, temperature and dewpoint
+     */
+    //% block="cloudbase %u"
+    //% weight=72 blockGap=8
+    export function cloudbase(u: LENGTH_U): number {
+        get()
+        let c = (((T - Dewpoint()) / 4.5) * 1000) + altitude()
+        if (u) c = c * 3.28
+        return c
+    }    
+    
     /**
      * Pressure below Event
      */
@@ -284,25 +306,7 @@ namespace SW01 {
         return 1 + (n * d) + (n * (n - 1) * d * d) / 2
     }
 
-    /**
-     * calaulate altitude use pressure and temperature
-     */
-    //% block="altitude"
-    export function altitude(): number {
-        get()
-        return (apow(101325 / P, 1 / 5.257) - 1.0) * (T + 273.15) / 0.0065
-    }
 
-    /**
-     * calaulate cloud base using altitude, temperature and dewpoint
-     */
-    //% block="cloudbase %u"
-    export function cloudbase(u: LENGTH_U): number {
-        get()
-        let c = (((T - Dewpoint()) / 4.5) * 1000) + altitude()
-        if (u) c = c * 3.28
-        return c
-    }
 
     /**
      * set I2C address
