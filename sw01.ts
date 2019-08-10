@@ -123,7 +123,7 @@ namespace SW01 {
     }
 
     /**
-     * get pressure
+     * get the atmospheric pressure in Pascals or HectoPascals
      */
     //% blockId="BME280_GET_PRESSURE" block="pressure %u"
     //% weight=84 blockGap=8
@@ -134,7 +134,7 @@ namespace SW01 {
     }
 
     /**
-     * get temperature
+     * get the temperature in degrees Celcius or Farenheit
      */
     //% blockId="BME280_GET_TEMPERATURE" block="temperature %u"
     //% weight=88 blockGap=8
@@ -173,7 +173,7 @@ namespace SW01 {
     }
 
     /**
-     * Calculate Dewpoint
+     * calculates the dewpoint
      */
     //% block="Dewpoint"
     //% weight=76 blockGap=8
@@ -183,7 +183,7 @@ namespace SW01 {
     }
 
     /**
-     * calaulate altitude use pressure and temperature
+     * calaulates the altitude using pressure and temperature
      */
     //% block="altitude"
     //% weight=74 blockGap=8
@@ -193,7 +193,7 @@ namespace SW01 {
     }
 
     /**
-     * calaulate cloud base using altitude, temperature and dewpoint
+     * calaulates the cloud base using altitude, temperature and dewpoint
      */
     //% block="cloudbase %u"
     //% weight=72 blockGap=8
