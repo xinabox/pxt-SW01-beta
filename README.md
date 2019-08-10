@@ -1,6 +1,7 @@
 # XinaBox SW01 MakeCode extension
 
-This library provides functions to access environmental data from the XinaBox SW01
+This library provides functions to access environmental data from the XinaBox SW01.
+
 Based on [BME280 Package from microbit/micropython Chinese community](https://github.com/makecode-extensions/BME280).
   
 ![](sw01.jpg)
