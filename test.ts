@@ -10,6 +10,6 @@ basic.forever(function () {
     serial.writeValue("altitude", SW01.altitude())
     serial.writeValue("cloudbase", SW01.cloudbase(LENGTH_U.METER))
     SW01.PowerOff()
-    basic.pause(100)
+    basic.pause(500)
     
 })
