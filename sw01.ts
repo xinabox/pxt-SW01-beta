@@ -157,27 +157,27 @@ namespace SW01 {
     /**
      * turn the SW01 on
      */
-    //% blockId="BME280_POWER_ON" block="Power On"
+    //% blockId="BME280_POWER_ON" block="power on"
     //% weight=98 blockGap=8
-    export function PowerOn() {
+    export function powerOn() {
         setreg(0xF4, 0x2F)
     }
 
     /**
      * turn the SW01 off
      */
-    //% blockId="BME280_POWER_OFF" block="Power Off"
+    //% blockId="BME280_POWER_OFF" block="power off"
     //% weight=96 blockGap=8
-    export function PowerOff() {
+    export function powerOff() {
         setreg(0xF4, 0)
     }
 
     /**
      * calculates the dewpoint
      */
-    //% block="Dewpoint"
+    //% block="dew point"
     //% weight=76 blockGap=8
-    export function Dewpoint(): number {
+    export function dewpoint(): number {
         get();
         return T - Math.idiv(100 - H, 5)
     }
@@ -195,11 +195,11 @@ namespace SW01 {
     /**
      * calaulates the cloud base using altitude, temperature and dewpoint
      */
-    //% block="cloudbase %u"
+    //% block="cloud base %u"
     //% weight=72 blockGap=8
     export function cloudbase(u: LENGTH_U): number {
         get()
-        let c = (((T - Dewpoint()) / 4.5) * 1000) + altitude()
+        let c = (((T - dewpoint()) / 4.5) * 1000) + altitude()
         if (u) c = c * 3.28
         return c
     }    
@@ -214,7 +214,7 @@ namespace SW01 {
     /**
      * set I2C address
      */
-    //% blockId="BME280_SET_ADDRESS" block="set address %addr"
+    //% blockId="BME280_SET_ADDRESS" block="set I2C address %addr"
     //% weight=50 blockGap=8
     export function Address(addr: BME280_I2C_ADDRESS) {
         BME280_I2C_ADDR = addr
