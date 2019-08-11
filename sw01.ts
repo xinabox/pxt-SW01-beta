@@ -216,7 +216,7 @@ namespace SW01 {
      */
     //% blockId="BME280_SET_ADDRESS" block="set I2C address %addr"
     //% weight=50 blockGap=8
-    export function Address(addr: BME280_I2C_ADDRESS) {
+    export function address(addr: BME280_I2C_ADDRESS) {
         BME280_I2C_ADDR = addr
     }
 
