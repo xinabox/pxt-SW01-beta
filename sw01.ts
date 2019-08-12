@@ -123,10 +123,10 @@ namespace SW01 {
     }
 
     /**
-     * get pressure
+     * get the atmospheric pressure in Pascals or HectoPascals
      */
     //% blockId="BME280_GET_PRESSURE" block="pressure %u"
-    //% weight=80 blockGap=8
+    //% weight=84 blockGap=8
     export function pressure(u: BME280_P): number {
         get();
         if (u == BME280_P.Pa) return P;
@@ -134,10 +134,10 @@ namespace SW01 {
     }
 
     /**
-     * get temperature
+     * get the temperature in degrees Celcius or Farenheit
      */
     //% blockId="BME280_GET_TEMPERATURE" block="temperature %u"
-    //% weight=80 blockGap=8
+    //% weight=88 blockGap=8
     export function temperature(u: BME280_T): number {
         get();
         if (u == BME280_T.T_C) return T;
@@ -145,138 +145,64 @@ namespace SW01 {
     }
 
     /**
-     * get humidity
+     * get the relative humidity (%)
      */
     //% blockId="BME280_GET_HUMIDITY" block="humidity"
-    //% weight=80 blockGap=8
+    //% weight=86 blockGap=8
     export function humidity(): number {
         get();
         return H;
     }
 
     /**
-     * power on
+     * turn the SW01 on
      */
-    //% blockId="BME280_POWER_ON" block="Power On"
-    //% weight=61 blockGap=8
-    export function PowerOn() {
+    //% blockId="BME280_POWER_ON" block="power on"
+    //% weight=98 blockGap=8
+    export function powerOn() {
         setreg(0xF4, 0x2F)
     }
 
     /**
-     * power off
+     * turn the SW01 off
      */
-    //% blockId="BME280_POWER_OFF" block="Power Off"
-    //% weight=60 blockGap=8
-    export function PowerOff() {
+    //% blockId="BME280_POWER_OFF" block="power off"
+    //% weight=96 blockGap=8
+    export function powerOff() {
         setreg(0xF4, 0)
     }
 
     /**
-     * Calculate Dewpoint
+     * calculates the dewpoint
      */
-    //% block="Dewpoint"
-    //% weight=60 blockGap=8
-    export function Dewpoint(): number {
+    //% block="dew point"
+    //% weight=76 blockGap=8
+    export function dewpoint(): number {
         get();
         return T - Math.idiv(100 - H, 5)
     }
 
     /**
-     * Pressure below Event
+     * calaulates the altitude using pressure and temperature
      */
-    //% block="Pressure below than %dat" dat.defl=100000
-    export function PressureBelowThan(dat: number, body: () => void): void {
-        control.inBackground(function () {
-            while (true) {
-                get()
-                if (P < dat) {
-                    body()
-                }
-                basic.pause(1000)
-            }
-        })
+    //% block="altitude"
+    //% weight=74 blockGap=8
+    export function altitude(): number {
+        get()
+        return (apow(101325 / P, 1 / 5.257) - 1.0) * (T + 273.15) / 0.0065
     }
 
     /**
-     * Pressure higher Event
+     * calaulates the cloud base using altitude, temperature and dewpoint
      */
-    //% block="Pressure higher than %dat" dat.defl=100000
-    export function PressureHigherThan(dat: number, body: () => void): void {
-        control.inBackground(function () {
-            while (true) {
-                get()
-                if (P > dat) {
-                    body()
-                }
-                basic.pause(1000)
-            }
-        })
-    }
-
-    /**
-     * humidity below Event
-     */
-    //% block="Humidity below than %dat" dat.defl=10
-    export function HumidityBelowThan(dat: number, body: () => void): void {
-        control.inBackground(function () {
-            while (true) {
-                get()
-                if (H < dat) {
-                    body()
-                }
-                basic.pause(1000)
-            }
-        })
-    }
-
-    /**
-     * humidity higher Event
-     */
-    //% block="Humidity higher than %dat" dat.defl=50
-    export function HumidityHigherThan(dat: number, body: () => void): void {
-        control.inBackground(function () {
-            while (true) {
-                get()
-                if (H > dat) {
-                    body()
-                }
-                basic.pause(1000)
-            }
-        })
-    }
-
-    /**
-     * temperature below Event
-     */
-    //% block="Temperature below than %dat" dat.defl=10
-    export function TemperatureBelowThan(dat: number, body: () => void): void {
-        control.inBackground(function () {
-            while (true) {
-                get()
-                if (T < dat) {
-                    body()
-                }
-                basic.pause(1000)
-            }
-        })
-    }
-
-    /**
-     * temperature higher Event
-     */
-    //% block="Temperature higher than %dat" dat.defl=30
-    export function TemperatureHigherThan(dat: number, body: () => void): void {
-        control.inBackground(function () {
-            while (true) {
-                get()
-                if (T > dat) {
-                    body()
-                }
-                basic.pause(1000)
-            }
-        })
-    }
+    //% block="cloud base %u"
+    //% weight=72 blockGap=8
+    export function cloudbase(u: LENGTH_U): number {
+        get()
+        let c = (((T - dewpoint()) / 4.5) * 1000) + altitude()
+        if (u) c = c * 3.28
+        return c
+    }    
 
     // power function approximate calculation for (1+x)^n, x~0
     function apow(x: number, n: number): number {
@@ -284,32 +210,13 @@ namespace SW01 {
         return 1 + (n * d) + (n * (n - 1) * d * d) / 2
     }
 
-    /**
-     * calaulate altitude use pressure and temperature
-     */
-    //% block="altitude"
-    export function altitude(): number {
-        get()
-        return (apow(101325 / P, 1 / 5.257) - 1.0) * (T + 273.15) / 0.0065
-    }
-
-    /**
-     * calaulate cloud base using altitude, temperature and dewpoint
-     */
-    //% block="cloudbase %u"
-    export function cloudbase(u: LENGTH_U): number {
-        get()
-        let c = (((T - Dewpoint()) / 4.5) * 1000) + altitude()
-        if (u) c = c * 3.28
-        return c
-    }
 
     /**
      * set I2C address
      */
-    //% blockId="BME280_SET_ADDRESS" block="set address %addr"
+    //% blockId="BME280_SET_ADDRESS" block="set I2C address %addr"
     //% weight=50 blockGap=8
-    export function Address(addr: BME280_I2C_ADDRESS) {
+    export function address(addr: BME280_I2C_ADDRESS) {
         BME280_I2C_ADDR = addr
     }
 
