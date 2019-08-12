@@ -19,7 +19,7 @@ The library is based on [BME280 Package from microbit/micropython Chinese commun
 ## How-to guides
 
 A comprehensive set of How-to guides that show you how to use the blocks is available online:
-* Search for SW01 on the [XinaBox website](https://xinabox.cc/)
+[XinaBox How-to guides for the SW01 on BBC micro:bit using MakeCode](https://drive.google.com/open?id=1_oNXhgYeW0AHTLmRxomowxPdvNBCi0iS)
 
 
 ## Core functions: Temperature:
