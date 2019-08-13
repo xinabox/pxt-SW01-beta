@@ -13,6 +13,14 @@ This library provides functions that give you access to these variables, as well
 * dewpoint
 * altitude
 
+There are 3 other functions:
+* power on
+* power off 
+* set I2C address
+
+By default the SW01 power is ON, and the I2C address is set correctly (to 0x76).
+You do NOT need to power on the SW01 or set the I2C address to use it
+
 The library is based on [BME280 Package from microbit/micropython Chinese community](https://github.com/makecode-extensions/BME280). Thanks also to ShaoZiyang for all the heavy lifting :)
   
 
