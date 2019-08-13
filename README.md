@@ -27,7 +27,7 @@ You do NOT need to power on the SW01 or set the I2C address to use it
 
 
 
-## How-to guides
+## How-to guides:
 
 A comprehensive set of How-to guides that show you how to use the blocks is available online:
 [XinaBox How-to guides for the SW01 on BBC micro:bit using MakeCode](https://drive.google.com/open?id=1_oNXhgYeW0AHTLmRxomowxPdvNBCi0iS)
@@ -67,17 +67,17 @@ basic.showNumber(SW01.pressure(BME280_P.hPa))
 ## Attribution:
 The library is based on [BME280 Package from microbit/micropython Chinese community](https://github.com/makecode-extensions/BME280). 
 
-Thanks also to ShaoZiyang for all the heavy lifting :)
+Thanks also to Shaoziyang for all the heavy lifting :)
   
 
 
-## License
+## License:
 
 MIT
 
 Copyright (c) 2019, XinaBox  
 
-## Supported targets
+## Supported targets:
 
 * for PXT/microbit
 
