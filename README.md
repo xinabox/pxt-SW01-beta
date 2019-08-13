@@ -10,7 +10,6 @@ The SW01 uses a Bosch BME280 to report:
 This library provides functions that give you access to these variables, as well some measures that can be derived from them:
 * dewpoint
 * altitude
-* cloudbase
 
 The library is based on [BME280 Package from microbit/micropython Chinese community](https://github.com/makecode-extensions/BME280).
   
