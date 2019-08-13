@@ -192,18 +192,6 @@ namespace SW01 {
         return (apow(101325 / P, 1 / 5.257) - 1.0) * (T + 273.15) / 0.0065
     }
 
-    /**
-     * calaulates the cloud base using altitude, temperature and dewpoint
-     */
-    //% block="cloud base %u"
-    //% weight=72 blockGap=8
-    export function cloudbase(u: LENGTH_U): number {
-        get()
-        let c = (((T - dewpoint()) / 4.5) * 1000) + altitude()
-        if (u) c = c * 3.28
-        return c
-    }    
-
     // power function approximate calculation for (1+x)^n, x~0
     function apow(x: number, n: number): number {
         let d = x - 1
