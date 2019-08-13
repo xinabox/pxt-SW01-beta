@@ -1,14 +1,13 @@
 basic.forever(function () {
-    
     SW01.powerOn()
-    serial.writeValue("Temp (c)", SW01.temperature(BME280_T.T_C))
-    serial.writeValue("Temp (F)", SW01.temperature(BME280_T.T_F))
-    serial.writeValue("Humidity", SW01.humidity())
-    serial.writeValue("Pressure (hPa)", SW01.pressure(BME280_P.hPa))
-    serial.writeValue("Pressure (Pa)", SW01.pressure(BME280_P.Pa))
-    serial.writeValue("Dewpoint", SW01.dewpoint())
-    serial.writeValue("altitude", SW01.altitude())
+    basic.showNumber(SW01.temperature(BME280_T.T_C))
+    basic.showNumber(SW01.temperature(BME280_T.T_F))
+    basic.showNumber(SW01.humidity())
+    basic.showNumber(SW01.pressure(BME280_P.hPa))
+    basic.showNumber(SW01.pressure(BME280_P.Pa))
+    basic.showNumber(SW01.dewpoint())
+    basic.showNumber(SW01.altitude())
     SW01.powerOff()
-    basic.pause(500)
-    
+    basic.pause(100)
 })
+
