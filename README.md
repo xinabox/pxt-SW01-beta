@@ -2,6 +2,8 @@
 
 This library provides functions to access environmental data from the XinaBox SW01.
 
+![](sw01.jpg)
+
 The SW01 uses a Bosch BME280 to report:
 * temperature 
 * humidity 
@@ -10,13 +12,22 @@ The SW01 uses a Bosch BME280 to report:
 This library provides functions that give you access to these variables, as well some measures that can be derived from them:
 * dewpoint
 * altitude
-* cloudbase
 
-The library is based on [BME280 Package from microbit/micropython Chinese community](https://github.com/makecode-extensions/BME280).
-  
-![](sw01.jpg)
+There are 3 other functions:
+* power on
+* power off 
+* set I2C address
 
-## How-to guides
+## ~ hint
+
+By default the SW01 power is ON, and the I2C address is set correctly (to 0x76).
+You do NOT need to power on the SW01 or set the I2C address to use it
+
+## ~
+
+
+
+## How-to guides:
 
 A comprehensive set of How-to guides that show you how to use the blocks is available online:
 [XinaBox How-to guides for the SW01 on BBC micro:bit using MakeCode](https://drive.google.com/open?id=1_oNXhgYeW0AHTLmRxomowxPdvNBCi0iS)
@@ -53,15 +64,20 @@ basic.showNumber(SW01.pressure(BME280_P.hPa))
 
 ```
 
+## Attribution:
+The library is based on [BME280 Package from microbit/micropython Chinese community](https://github.com/makecode-extensions/BME280). 
+
+Thanks also to Shaoziyang for all the heavy lifting :)
+  
 
 
-## License
+## License:
 
 MIT
 
 Copyright (c) 2019, XinaBox  
 
-## Supported targets
+## Supported targets:
 
 * for PXT/microbit
 
