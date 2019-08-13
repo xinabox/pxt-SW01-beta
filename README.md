@@ -2,6 +2,8 @@
 
 This library provides functions to access environmental data from the XinaBox SW01.
 
+![](sw01.jpg)
+
 The SW01 uses a Bosch BME280 to report:
 * temperature 
 * humidity 
@@ -13,12 +15,13 @@ This library provides functions that give you access to these variables, as well
 
 The library is based on [BME280 Package from microbit/micropython Chinese community](https://github.com/makecode-extensions/BME280). Thanks also to ShaoZiyang for all the heavy lifting :)
   
-![](sw01.jpg)
+
 
 ## How-to guides
 
 A comprehensive set of How-to guides that show you how to use the blocks is available online:
 * Search for SW01 on the [XinaBox website](https://xinabox.cc/)
+
 
 
 ## Core functions: Temperature:
