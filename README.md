@@ -4,6 +4,8 @@ This library provides functions to access environmental data from the XinaBox SW
 
 ![](sw01.jpg)
 
+[Read more about it or purchase one here](https://xinabox.cc/products/sw01)
+
 The SW01 uses a Bosch BME280 to report:
 * temperature 
 * humidity 
