@@ -12,9 +12,9 @@ enum BME280_I2C_ADDRESS {
 }
 
 enum BME280_T {
-    //% block="C"
+    //% block="ºC"
     T_C = 0,
-    //% block="F"
+    //% block="ºF"
     T_F = 1
 }
 
@@ -125,7 +125,7 @@ namespace SW01 {
     /**
      * get the atmospheric pressure in Pascals or HectoPascals
      */
-    //% blockId="BME280_GET_PRESSURE" block="pressure %u"
+    //% blockId="BME280_GET_PRESSURE" block="SW01 pressure %u"
     //% weight=84 blockGap=8
     export function pressure(u: BME280_P): number {
         get();
@@ -136,7 +136,7 @@ namespace SW01 {
     /**
      * get the temperature in degrees Celcius or Farenheit
      */
-    //% blockId="BME280_GET_TEMPERATURE" block="temperature %u"
+    //% blockId="BME280_GET_TEMPERATURE" block="SW01 temperature %u"
     //% weight=88 blockGap=8
     export function temperature(u: BME280_T): number {
         get();
@@ -147,7 +147,7 @@ namespace SW01 {
     /**
      * get the relative humidity (%)
      */
-    //% blockId="BME280_GET_HUMIDITY" block="humidity"
+    //% blockId="BME280_GET_HUMIDITY" block="SW01 humidity"
     //% weight=86 blockGap=8
     export function humidity(): number {
         get();
@@ -157,7 +157,7 @@ namespace SW01 {
     /**
      * turn the SW01 on
      */
-    //% blockId="BME280_POWER_ON" block="power on"
+    //% blockId="BME280_POWER_ON" block="SW01 power on"
     //% weight=98 blockGap=8
     export function powerOn() {
         setreg(0xF4, 0x2F)
@@ -166,7 +166,7 @@ namespace SW01 {
     /**
      * turn the SW01 off
      */
-    //% blockId="BME280_POWER_OFF" block="power off"
+    //% blockId="BME280_POWER_OFF" block="SW01 power off"
     //% weight=96 blockGap=8
     export function powerOff() {
         setreg(0xF4, 0)
@@ -175,7 +175,7 @@ namespace SW01 {
     /**
      * calculates the dewpoint
      */
-    //% block="dew point"
+    //% block="SW01 dew point"
     //% weight=76 blockGap=8
     export function dewpoint(): number {
         get();
@@ -185,7 +185,7 @@ namespace SW01 {
     /**
      * calaulates the altitude using pressure and temperature
      */
-    //% block="altitude"
+    //% block="SW01 altitude"
     //% weight=74 blockGap=8
     export function altitude(): number {
         get()
