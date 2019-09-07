@@ -2,6 +2,7 @@
     "SW01.pressure|block": "气压 %u",
     "SW01.temperature|block": "温度 %u",
     "SW01.humidity|block": "湿度",
+    "SW01.Power|block": "开启传感器",
     "SW01.PowerOn|block": "开启传感器",
     "SW01.PowerOff|block": "关闭传感器",
     "SW01.Dewpoint|block": "露点",

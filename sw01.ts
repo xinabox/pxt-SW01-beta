@@ -179,10 +179,9 @@ namespace SW01 {
     //% weight=98 blockGap=8
     //% colorSecondary="#FFFFFF"
     //% on.shadow="toggleOnOff"
-    export function powerOnOff(on: boolean) {
-        if (on) setreg(0xF4, 0x2F)
+    export function onOff(on: boolean) {
+        if (on) setreg(0xF4, 0x2F);
         else setreg(0xF4, 0)
-
     }
 
     //% blockId="BME280_POWER_ON" block="SW01 power on"

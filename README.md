@@ -16,8 +16,7 @@ This library provides functions that give you access to these variables, as well
 * altitude
 
 There are 3 other functions:
-* power on
-* power off 
+* power on/off
 * set I2C address
 
 ## ~ hint
@@ -77,9 +76,13 @@ Thanks also to Shaoziyang for all the heavy lifting :)
 
 MIT
 
-Copyright (c) 2019, XinaBox  
+Copyright (c) 2019, XinaBox Limited
 
 ## Supported targets:
 
-* for PXT/microbit
+* PXT/microbit
+* PXT/CC03
+* PXT/CS11
+* PXT/CW03
+
 
