@@ -139,6 +139,7 @@ namespace SW01 {
      */
     //% blockId="BME280_GET_PRESSURE" block="SW01 pressure %u"
     //% group="Variables"
+    //% colorSecondary="#FFFFFF"
     //% weight=84 blockGap=8
     export function pressure(u: BME280_P): number {
         get();
@@ -150,6 +151,7 @@ namespace SW01 {
      */
     //% blockId="BME280_GET_TEMPERATURE" block="SW01 temperature %u"
     //% group="Variables"
+    //% colorSecondary="#FFFFFF"
     //% weight=88 blockGap=8
     export function temperature(u: BME280_T): number {
         get();
@@ -162,6 +164,7 @@ namespace SW01 {
      */
     //% blockId="BME280_GET_HUMIDITY" block="SW01 humidity %u"
     //% group="Variables"
+    //% colorSecondary="#FFFFFF"
     //% weight=86 blockGap=8
     export function humidity(u: BME280_H): number {
         get();
@@ -174,6 +177,7 @@ namespace SW01 {
     //% blockId="BME280_POWER" block="SW01 power $on"
     //% group="Options"
     //% weight=98 blockGap=8
+    //% colorSecondary="#FFFFFF"
     //% on.shadow="toggleOnOff"
     export function powerOnOff(on: boolean) {
         if (on) setreg(0xF4, 0x2F)
@@ -205,6 +209,7 @@ namespace SW01 {
      */
     //% block="SW01 dew point %u"
     //% group="Variables"
+    //% colorSecondary="#FFFFFF"
     //% weight=76 blockGap=8
     export function dewpoint(u: BME280_D): number {
         get();
@@ -217,6 +222,7 @@ namespace SW01 {
      */
     //% block="SW01 altitude %u"
     //% group="Variables"
+    //% colorSecondary="#FFFFFF"
     //% weight=74 blockGap=8
     export function altitude(u: LENGTH_U): number {
         get()
