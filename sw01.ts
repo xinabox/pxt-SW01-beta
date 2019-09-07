@@ -47,7 +47,7 @@ enum LENGTH_U {
  * BME280 block
  */
 //% weight=100 color=#081620 icon="\uf185" block="SW01"
-//% groups=['Configuration', 'Variables', 'Options']
+//% groups=['Configuration', 'Variables', 'Optional']
 namespace SW01 {
     let BME280_I2C_ADDR = BME280_I2C_ADDRESS.ADDR_0x76
 
@@ -175,7 +175,7 @@ namespace SW01 {
      * turn the SW01 on or off
      */
     //% blockId="BME280_POWER" block="SW01 power $on"
-    //% group="Options"
+    //% group="Optional"
     //% weight=98 blockGap=8
     //% colorSecondary="#FFFFFF"
     //% on.shadow="toggleOnOff"
@@ -185,7 +185,7 @@ namespace SW01 {
     }
 
     //% blockId="BME280_POWER_ON" block="SW01 power on"
-    //% group="Options"
+    //% group="Optional"
     //% weight=98 blockGap=8
     //% deprecated=true
     export function powerOn() {
@@ -196,7 +196,7 @@ namespace SW01 {
      * turn the SW01 off
      */
     //% blockId="BME280_POWER_OFF" block="SW01 power off"
-    //% group="Options"
+    //% group="Optional"
     //% weight=96 blockGap=8
     //% deprecated=true
     export function powerOff() {
