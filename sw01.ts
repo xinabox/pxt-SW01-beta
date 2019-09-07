@@ -17,14 +17,23 @@ enum BME280_T {
     //% block="ºF"
     T_F = 1
 }
+enum BME280_D {
+    //% block="ºC"
+    T_C = 0,
+    //% block="ºF"
+    T_F = 1
+}
 
 enum BME280_P {
-    //% block="Pa"
-    Pa = 0,
     //% block="hPa"
-    hPa = 1,
+    hPa = 0,
     //% block="mbar"
-    mbar = 2
+    mbar = 1
+}
+
+enum BME280_H {
+    //% block="%RH"
+    rh = 0
 }
 
 enum LENGTH_U {
@@ -131,27 +140,26 @@ namespace SW01 {
     //% weight=84 blockGap=8
     export function pressure(u: BME280_P): number {
         get();
-        if (u == BME280_P.Pa) return P;
-        else return Math.idiv(P, 100)
+        return Math.idiv(P, 100);
     }
 
     /**
-     * get the temperature in degrees Celcius or Farenheit
+     * get the temperature in degrees Celcius or Fahrenheit
      */
     //% blockId="BME280_GET_TEMPERATURE" block="SW01 temperature %u"
     //% weight=88 blockGap=8
     export function temperature(u: BME280_T): number {
         get();
         if (u == BME280_T.T_C) return T;
-        else return 32 + Math.idiv(T * 9, 5)
+        else return 32 + Math.idiv(T * 9, 5);
     }
 
     /**
      * get the relative humidity (%)
      */
-    //% blockId="BME280_GET_HUMIDITY" block="SW01 humidity"
+    //% blockId="BME280_GET_HUMIDITY" block="SW01 humidity %u"
     //% weight=86 blockGap=8
-    export function humidity(): number {
+    export function humidity(u: BME280_H): number {
         get();
         return H;
     }
@@ -177,21 +185,24 @@ namespace SW01 {
     /**
      * calculates the dewpoint
      */
-    //% block="SW01 dew point"
+    //% block="SW01 dew point %u"
     //% weight=76 blockGap=8
-    export function dewpoint(): number {
+    export function dewpoint(u: BME280_D): number {
         get();
-        return T - Math.idiv(100 - H, 5)
+        if (u == BME280_D.T_C) return T - Math.idiv(100 - H, 5);
+        else return 32 + Math.idiv((T - Math.idiv(100 - H, 5)) * 9, 5);
     }
 
     /**
      * calaulates the altitude using pressure and temperature
      */
-    //% block="SW01 altitude"
+    //% block="SW01 altitude %u"
     //% weight=74 blockGap=8
-    export function altitude(): number {
+    export function altitude(u: LENGTH_U): number {
         get()
-        return (apow(101325 / P, 1 / 5.257) - 1.0) * (T + 273.15) / 0.0065
+        let alt = (apow(101325 / P, 1 / 5.257) - 1.0) * (T + 273.15) / 0.0065
+        if (u == LENGTH_U.METER) return alt;
+        else return alt * 3.28084;
     }
 
     // power function approximate calculation for (1+x)^n, x~0
