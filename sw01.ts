@@ -24,7 +24,7 @@ enum BME280_P {
     //% block="hPa"
     hPa = 1,
     //% block="mbar"
-    hPa = 2
+    mbar = 2
 }
 
 enum LENGTH_U {
