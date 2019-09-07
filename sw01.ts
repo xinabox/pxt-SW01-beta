@@ -47,6 +47,7 @@ enum LENGTH_U {
  * BME280 block
  */
 //% weight=100 color=#081620 icon="\uf185" block="SW01"
+//% groups=['Configuration', 'Variables']
 namespace SW01 {
     let BME280_I2C_ADDR = BME280_I2C_ADDRESS.ADDR_0x76
 
@@ -134,9 +135,10 @@ namespace SW01 {
     }
 
     /**
-     * get the atmospheric pressure in Pascals or HectoPascals
+     * get the atmospheric pressure in HectoPascals or millibar
      */
     //% blockId="BME280_GET_PRESSURE" block="SW01 pressure %u"
+    //% group="Variables"
     //% weight=84 blockGap=8
     export function pressure(u: BME280_P): number {
         get();
@@ -147,6 +149,7 @@ namespace SW01 {
      * get the temperature in degrees Celcius or Fahrenheit
      */
     //% blockId="BME280_GET_TEMPERATURE" block="SW01 temperature %u"
+    //% group="Variables"
     //% weight=88 blockGap=8
     export function temperature(u: BME280_T): number {
         get();
@@ -158,6 +161,7 @@ namespace SW01 {
      * get the relative humidity (%)
      */
     //% blockId="BME280_GET_HUMIDITY" block="SW01 humidity %u"
+    //% group="Variables"
     //% weight=86 blockGap=8
     export function humidity(u: BME280_H): number {
         get();
@@ -168,6 +172,7 @@ namespace SW01 {
      * turn the SW01 on
      */
     //% blockId="BME280_POWER_ON" block="SW01 power on"
+    //% group="Configuration"
     //% weight=98 blockGap=8
     export function powerOn() {
         setreg(0xF4, 0x2F)
@@ -177,6 +182,7 @@ namespace SW01 {
      * turn the SW01 off
      */
     //% blockId="BME280_POWER_OFF" block="SW01 power off"
+    //% group="Configuration"
     //% weight=96 blockGap=8
     export function powerOff() {
         setreg(0xF4, 0)
@@ -186,6 +192,7 @@ namespace SW01 {
      * calculates the dewpoint
      */
     //% block="SW01 dew point %u"
+    //% group="Variables"
     //% weight=76 blockGap=8
     export function dewpoint(u: BME280_D): number {
         get();
@@ -197,6 +204,7 @@ namespace SW01 {
      * calaulates the altitude using pressure and temperature
      */
     //% block="SW01 altitude %u"
+    //% group="Variables"
     //% weight=74 blockGap=8
     export function altitude(u: LENGTH_U): number {
         get()
@@ -216,6 +224,7 @@ namespace SW01 {
      * set I2C address
      */
     //% blockId="BME280_SET_ADDRESS" block="set I2C address %addr"
+    //% group="Configuration"
     //% weight=50 blockGap=8
     export function address(addr: BME280_I2C_ADDRESS) {
         BME280_I2C_ADDR = addr
