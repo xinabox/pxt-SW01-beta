@@ -1,6 +1,6 @@
 {
     "name": "SW01",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "description": "XinaBox SW01 weather sensor: Pressure, Temperature and Humidity",
     "license": "MIT",
     "dependencies": {
