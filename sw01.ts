@@ -22,6 +22,8 @@ enum BME280_P {
     //% block="Pa"
     Pa = 0,
     //% block="hPa"
+    hPa = 1,
+        //% block="mbar"
     hPa = 1
 }
 
