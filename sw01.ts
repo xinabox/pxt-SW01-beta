@@ -4,13 +4,6 @@
  *   https://github.com/makecode-extensions/BME280
  */
 
-enum BME280_I2C_ADDRESS {
-    //% block="0x76"
-    ADDR_0x76 = 0x76,
-    //% block="0x77"
-    ADDR_0x77 = 0x77
-}
-
 enum BME280_T {
     //% block="ºC"
     T_C = 0,
@@ -46,10 +39,10 @@ enum LENGTH_U {
 /**
  * BME280 block
  */
-//% weight=100 color=#ff0000 icon="\uf185" block="SW01"
+//% weight=100 color="#ff0000" icon="\uf185" block="SW01"
 //% groups=['On start', 'Variables', 'Optional']
 namespace SW01 {
-    let BME280_I2C_ADDR = BME280_I2C_ADDRESS.ADDR_0x76
+    let BME280_I2C_ADDR = 0x76
 
     function setreg(reg: number, dat: number): void {
         let buf = pins.createBuffer(2);
@@ -139,7 +132,6 @@ namespace SW01 {
      */
     //% blockId="BME280_GET_PRESSURE" block="SW01 pressure %u"
     //% group="Variables"
-    //% colorSecondary="#FFFFFF"
     //% weight=84 blockGap=8
     export function pressure(u: BME280_P): number {
         get();
@@ -151,7 +143,6 @@ namespace SW01 {
      */
     //% blockId="BME280_GET_TEMPERATURE" block="SW01 temperature %u"
     //% group="Variables"
-    //% colorSecondary="#FFFFFF"
     //% weight=88 blockGap=8
     export function temperature(u: BME280_T): number {
         get();
@@ -164,7 +155,6 @@ namespace SW01 {
      */
     //% blockId="BME280_GET_HUMIDITY" block="SW01 humidity %u"
     //% group="Variables"
-    //% colorSecondary="#FFFFFF"
     //% weight=86 blockGap=8
     export function humidity(u: BME280_H): number {
         get();
@@ -177,7 +167,6 @@ namespace SW01 {
     //% blockId="BME280_POWER" block="SW01 power $on"
     //% group="Optional"
     //% weight=98 blockGap=8
-    //% colorSecondary="#FFFFFF"
     //% on.shadow="toggleOnOff"
     export function onOff(on: boolean) {
         if (on) setreg(0xF4, 0x2F);
@@ -208,7 +197,6 @@ namespace SW01 {
      */
     //% block="SW01 dew point %u"
     //% group="Variables"
-    //% u.color="#FFFFFF"
     //% weight=76 blockGap=8
     export function dewpoint(u: BME280_D): number {
         get();
@@ -221,7 +209,7 @@ namespace SW01 {
      */
     //% block="SW01 altitude %u"
     //% group="Variables"
-    //% colorSecondary="#FFFFFF"
+
     //% weight=74 blockGap=8
     export function altitude(u: LENGTH_U): number {
         get()
@@ -240,11 +228,12 @@ namespace SW01 {
     /**
      * set I2C address
      */
-    //% blockId="BME280_SET_ADDRESS" block="set SW01 I2C address to %addr"
+    //% blockId="BME280_SET_ADDRESS" block="SW01 address %on"
     //% group="Optional"
     //% weight=50 blockGap=8
-    export function address(addr: BME280_I2C_ADDRESS) {
-        BME280_I2C_ADDR = addr
+    //% on.shadow="toggleOnOff"
+    export function address(on: boolean) {
+        if (on) BME280_I2C_ADDR = 0x76
+        else BME280_I2C_ADDR = 0x77
     }
-
 }
