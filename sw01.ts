@@ -39,7 +39,7 @@ enum LENGTH_U {
 /**
  * BME280 block
  */
-//% weight=100 color="#ff0000" icon="\uf185" block="SW01"
+//% weight=100 color="#ff0000" icon="\uf763" block="SW01"
 //% groups=['On start', 'Variables', 'Optional']
 namespace SW01 {
     let BME280_I2C_ADDR = 0x76
@@ -223,7 +223,6 @@ namespace SW01 {
         let d = x - 1
         return 1 + (n * d) + (n * (n - 1) * d * d) / 2
     }
-
 
     /**
      * set I2C address

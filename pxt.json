@@ -2,6 +2,10 @@
     "name": "SW01",
     "version": "1.0.11",
     "description": "XinaBox SW01 weather sensor: Pressure, Temperature and Humidity",
+    "authors": [
+        "Bjarke Gotfredsen",
+        "Brendan van Breda"
+    ],
     "license": "MIT",
     "dependencies": {
         "core": "*"
