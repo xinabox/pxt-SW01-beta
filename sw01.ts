@@ -47,7 +47,7 @@ enum LENGTH_U {
  * BME280 block
  */
 //% weight=100 color=#081620 icon="\uf185" block="SW01"
-//% groups=['Configuration', 'Variables', 'Optional']
+//% groups=['On start', 'Variables', 'Optional']
 namespace SW01 {
     let BME280_I2C_ADDR = BME280_I2C_ADDRESS.ADDR_0x76
 
@@ -208,7 +208,7 @@ namespace SW01 {
      */
     //% block="SW01 dew point %u"
     //% group="Variables"
-    //% colorSecondary="#FFFFFF"
+    //% u.color="#FFFFFF"
     //% weight=76 blockGap=8
     export function dewpoint(u: BME280_D): number {
         get();
@@ -240,8 +240,8 @@ namespace SW01 {
     /**
      * set I2C address
      */
-    //% blockId="BME280_SET_ADDRESS" block="set I2C address %addr"
-    //% group="Configuration"
+    //% blockId="BME280_SET_ADDRESS" block="set SW01 I2C address to %addr"
+    //% group="Optional"
     //% weight=50 blockGap=8
     export function address(addr: BME280_I2C_ADDRESS) {
         BME280_I2C_ADDR = addr
