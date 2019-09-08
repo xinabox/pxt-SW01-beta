@@ -39,7 +39,7 @@ enum LENGTH_U {
 /**
  * SW01 block
  */
-//% color=#101010 icon="\uf185"
+//% color=#444444 icon="\uf743"
 //% groups=['On start', 'Variables', 'Optional']
 namespace SW01 {
     let BME280_I2C_ADDR = 0x76
@@ -90,9 +90,12 @@ namespace SW01 {
     let dig_H4 = (getreg(0xE4) << 4) + (a % 16)
     let dig_H5 = (getreg(0xE6) << 4) + (a >> 4)
     let dig_H6 = getInt8LE(0xE7)
-    setreg(0xF2, 0x04)
-    setreg(0xF4, 0x2F)
-    setreg(0xF5, 0x0C)
+    setreg(0xF2, 0x04) // set Humidity oversampling to x8
+    //setreg(0xF4, 0x2F) 
+    setreg(0xF4, 0x93) // set Pressure oversampling to x8
+                       // set Temperature oversampling to x8
+                       // set Normal mode
+    setreg(0xF5, 0x0C) // set time constant of the IIR filter to 250 ms
     let T = 0
     let P = 0
     let H = 0
@@ -168,7 +171,7 @@ namespace SW01 {
     }
 
     /**
-     * turn the SW01 on or off
+     * Turn the SW01 on or off
      * @param on power on or off
      */
     //% blockId="BME280_POWER" block="SW01 power $on"
@@ -176,7 +179,7 @@ namespace SW01 {
     //% weight=98 blockGap=8
     //% on.shadow="toggleOnOff"
     export function onOff(on: boolean) {
-        if (on) setreg(0xF4, 0x2F);
+        if (on) setreg(0xF4, 0x93);
         else setreg(0xF4, 0)
     }
 
@@ -185,7 +188,7 @@ namespace SW01 {
     //% weight=98 blockGap=8
     //% deprecated=true
     export function powerOn() {
-        setreg(0xF4, 0x2F)
+        setreg(0xF4, 0x93)
     }
 
     /**
