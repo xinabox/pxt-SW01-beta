@@ -37,9 +37,9 @@ enum LENGTH_U {
 }
 
 /**
- * BME280 block
+ * SW01 block
  */
-//% weight=100 color="#101010" icon="\uf185" block="SW01"
+//% color=#101010 icon="\uf185"
 //% groups=['On start', 'Variables', 'Optional']
 namespace SW01 {
     let BME280_I2C_ADDR = 0x76
@@ -128,7 +128,8 @@ namespace SW01 {
     }
 
     /**
-     * get the atmospheric pressure in HectoPascals or millibar
+     * The atmospheric pressure in hPa or mbar
+     * https://en.wikipedia.org/wiki/Atmospheric_pressure
      * @param u the pressure unit
      */
     //% blockId="BME280_GET_PRESSURE" block="SW01 pressure %u"
@@ -140,7 +141,8 @@ namespace SW01 {
     }
 
     /**
-     * get the temperature in degrees Celcius or Fahrenheit
+     * The temperature in degrees Celcius or Fahrenheit
+     * https://en.wikipedia.org/wiki/Temperature
      * @param u the temperature unit
      */
     //% blockId="BME280_GET_TEMPERATURE" block="SW01 temperature %u"
@@ -153,7 +155,8 @@ namespace SW01 {
     }
 
     /**
-     * get the relative humidity (%)
+     * The relative humidity in percent
+     * https://en.wikipedia.org/wiki/Relative_humidity
      * @param u the relative humidity unit
      */
     //% blockId="BME280_GET_HUMIDITY" block="SW01 humidity %u"
@@ -197,7 +200,12 @@ namespace SW01 {
     }
 
     /**
-     * calculates the dewpoint
+     * The calculated dew point in temperature unit 
+     * https://en.wikipedia.org/wiki/Dew_point
+     * The dew point is calculated following this formula  
+     * proposed in a 2005 article by Mark G. Lawrence in 
+     * the Bulletin of the American Meteorological Society:
+     * dew point = temperature - ((100 - relative humidity)/5)
      * @param u the dew point temperature unit
      */
     //% block="SW01 dew point %u"
@@ -210,18 +218,50 @@ namespace SW01 {
     }
 
     /**
-     * calaulates the altitude using pressure and temperature
-     * @param u the altitude unit
+     * The density altitude in meter or feet
+     * https://en.wikipedia.org/wiki/Density_altitude
+     * @param u the density altitude unit
      */
-    //% block="SW01 altitude %u"
+    //% block="SW01 density altitude %u"
     //% group="Variables"
-
     //% weight=74 blockGap=8
-    export function altitude(u: LENGTH_U): number {
+    export function densityAltitude(u: LENGTH_U): number {
         get()
         let alt = (apow(101325 / P, 1 / 5.257) - 1.0) * (T + 273.15) / 0.0065
         if (u == LENGTH_U.METER) return alt;
         else return alt * 3.28084;
+    }
+
+    /**
+    * The pressure altitude in meter or feet
+    * https://en.wikipedia.org/wiki/Pressure_altitude
+    * @param u the pressure altitude unit
+    */
+    //% block="SW01 pressure altitude %u"
+    //% group="Variables"
+    //% weight=74 blockGap=8
+    export function pressureAltitude(u: LENGTH_U): number {
+        get()
+        let alt = (1 - apow(P/101325, 0.190284)) * 145366.45
+        if (u == LENGTH_U.FEET) return alt;
+        else return alt * 0.3048;
+    }
+
+    /**
+    * The estimated cloud base in meter or feet
+    * A cloud base (or the base of the cloud) 
+    * is the lowest altitude of the visible portion of a cloud.
+    * https://en.wikipedia.org/wiki/Cloud_base
+    * @param u the cloud base unit
+    */
+    //% block="SW01 cloud base %u"
+    //% group="Variables"
+    //% weight=74 blockGap=8
+    export function cloudBase(u: LENGTH_U): number {
+        get()
+        let base = (T - (T - Math.idiv(100 - H, 5)))/2.5 * 1000
+        if (u == LENGTH_U.FEET) return base;
+        else return base * 0.3048;
     }
 
     // power function approximate calculation for (1+x)^n, x~0
@@ -231,7 +271,9 @@ namespace SW01 {
     }
 
     /**
-     * set I2C address
+     * Set I2C address
+     * On:  0x76
+     * Off: 0x77
      * @param on on is I2C address 0x76, off is 0x77
      */
     //% blockId="BME280_SET_ADDRESS" block="SW01 address %on"
