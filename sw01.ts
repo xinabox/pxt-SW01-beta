@@ -91,7 +91,9 @@ namespace SW01 {
     let dig_H5 = (getreg(0xE6) << 4) + (a >> 4)
     let dig_H6 = getInt8LE(0xE7)
     setreg(0xF2, 0x04) // set Humidity oversampling to x8
-    setreg(0xF4, 0x2F) 
+    setreg(0xF4, 0x2F) // set Pressure oversampling to x1
+                       // set Temperature oversampling to x4
+                       // set Normal mode
     //setreg(0xF4, 0x93) // set Pressure oversampling to x8
                        // set Temperature oversampling to x8
                        // set Normal mode
