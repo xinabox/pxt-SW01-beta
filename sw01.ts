@@ -108,7 +108,7 @@ namespace SW01 {
         let var2 = (((((adc_T >> 4) - dig_T1) * ((adc_T >> 4) - dig_T1)) >> 12) * dig_T3) >> 14
         let t = var1 + var2
         //T = Math.idiv((t * 5 + 128) >> 8, 100)
-        T = fix(((t * 5 + 128) >> 8) / 100)
+        T = ((t * 5 + 128) >> 8) / 100
         var1 = (t >> 1) - 64000
         var2 = (((var1 >> 2) * (var1 >> 2)) >> 11) * dig_P6
         var2 = var2 + ((var1 * dig_P5) << 1)
@@ -157,8 +157,8 @@ namespace SW01 {
     //% weight=88 blockGap=8
     export function temperature(u: BME280_T): number {
         get();
-        if (u == BME280_T.T_C) return T;
-        else return 32 + T * 9 / 5;
+        if (u == BME280_T.T_C) return fix(T);
+        else return fix(32 + T * 9 / 5);
     }
 
     /**
@@ -171,7 +171,7 @@ namespace SW01 {
     //% weight=86 blockGap=8
     export function humidity(u: BME280_H): number {
         get();
-        return H;
+        return fix(H);
     }
 
     /**
@@ -220,8 +220,8 @@ namespace SW01 {
     //% weight=76 blockGap=8
     export function dewpoint(u: BME280_D): number {
         get();
-        if (u == BME280_D.T_C) return T - (100 - H / 5);
-        else return 32 + ((T - (100 - H/ 5)) * 9/ 5);
+        if (u == BME280_D.T_C) return fix(T - ((100 - H) / 5));
+        else return fix(32 + ((T - ((100 - H)/ 5)) * 9/ 5));
     }
 
     /**
@@ -235,8 +235,8 @@ namespace SW01 {
     export function densityAltitude(u: LENGTH_U): number {
         get()
         let alt = (apow(101325 / P, 1 / 5.257) - 1.0) * (T + 273.15) / 0.0065
-        if (u == LENGTH_U.METER) return alt;
-        else return alt * 3.28084;
+        if (u == LENGTH_U.METER) return fix(alt);
+        else return fix(alt * 3.28084);
     }
 
     /**
@@ -250,8 +250,8 @@ namespace SW01 {
     export function pressureAltitude(u: LENGTH_U): number {
         get()
         let alt = (1 - apow(P/101325, 0.190284)) * 145366.45
-        if (u == LENGTH_U.FEET) return alt;
-        else return alt * 0.3048;
+        if (u == LENGTH_U.FEET) return fix(alt);
+        else return fix(alt * 0.3048);
     }
 
     /**
@@ -267,8 +267,8 @@ namespace SW01 {
     export function cloudBase(u: LENGTH_U): number {
         get()
         let base = (T - (T - ((100 - H)/ 5)))/2.5 * 1000
-        if (u == LENGTH_U.FEET) return base;
-        else return base * 0.3048;
+        if (u == LENGTH_U.FEET) return fix(base);
+        else return fix(base * 0.3048);
     }
 
     // power function approximate calculation for (1+x)^n, x~0
