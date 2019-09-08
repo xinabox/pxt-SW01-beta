@@ -108,7 +108,7 @@ namespace SW01 {
         let var2 = (((((adc_T >> 4) - dig_T1) * ((adc_T >> 4) - dig_T1)) >> 12) * dig_T3) >> 14
         let t = var1 + var2
         //T = Math.idiv((t * 5 + 128) >> 8, 100)
-        T = ((t * 5 + 128) >> 8)/100
+        T = fix(((t * 5 + 128) >> 8) / 100)
         var1 = (t >> 1) - 64000
         var2 = (((var1 >> 2) * (var1 >> 2)) >> 11) * dig_P6
         var2 = var2 + ((var1 * dig_P5) << 1)
@@ -119,7 +119,8 @@ namespace SW01 {
             return; // avoid exception caused by division by zero
         let adc_P = (getreg(0xF7) << 12) + (getreg(0xF8) << 4) + (getreg(0xF9) >> 4)
         let _p = ((1048576 - adc_P) - (var2 >> 12)) * 3125
-        _p = Math.idiv(_p, var1) * 2;
+        //_p = Math.idiv(_p, var1) * 2;
+        _p = _p/ var1 * 2;
         var1 = (dig_P9 * (((_p >> 3) * (_p >> 3)) >> 13)) >> 12
         var2 = (((_p >> 2)) * dig_P8) >> 13
         P = _p + ((var1 + var2 + dig_P7) >> 4)
@@ -143,7 +144,7 @@ namespace SW01 {
     //% weight=84 blockGap=8
     export function pressure(u: BME280_P): number {
         get();
-        return Math.idiv(P, 100);
+        return fix(P / 100);
     }
 
     /**
@@ -265,7 +266,7 @@ namespace SW01 {
     //% weight=74 blockGap=8
     export function cloudBase(u: LENGTH_U): number {
         get()
-        let base = (T - (T - Math.idiv(100 - H, 5)))/2.5 * 1000
+        let base = (T - (T - ((100 - H)/ 5)))/2.5 * 1000
         if (u == LENGTH_U.FEET) return base;
         else return base * 0.3048;
     }
@@ -290,4 +291,9 @@ namespace SW01 {
         if (on) BME280_I2C_ADDR = 0x76
         else BME280_I2C_ADDR = 0x77
     }
+
+    function fix(x: number) {
+        return Math.round(x * 100) / 100
+    }
+    
 }
