@@ -1,6 +1,6 @@
 {
     "name": "SW01",
-    "version": "1.0.17",
+    "version": "1.0.18",
     "description": "XinaBox SW01 weather sensor: Pressure, Temperature and Humidity",
     "authors": [
         "Bjarke Gotfredsen",
