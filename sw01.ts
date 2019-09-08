@@ -157,7 +157,7 @@ namespace SW01 {
     export function temperature(u: BME280_T): number {
         get();
         if (u == BME280_T.T_C) return T;
-        else return 32 + Math.idiv(T * 9, 5);
+        else return 32 + T * 9 / 5;
     }
 
     /**
@@ -219,8 +219,8 @@ namespace SW01 {
     //% weight=76 blockGap=8
     export function dewpoint(u: BME280_D): number {
         get();
-        if (u == BME280_D.T_C) return T - Math.idiv(100 - H, 5);
-        else return 32 + Math.idiv((T - Math.idiv(100 - H, 5)) * 9, 5);
+        if (u == BME280_D.T_C) return T - (100 - H / 5);
+        else return 32 + ((T - (100 - H/ 5)) * 9/ 5);
     }
 
     /**
