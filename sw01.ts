@@ -129,6 +129,7 @@ namespace SW01 {
 
     /**
      * get the atmospheric pressure in HectoPascals or millibar
+     * @param u the pressure unit
      */
     //% blockId="BME280_GET_PRESSURE" block="SW01 pressure %u"
     //% group="Variables"
@@ -140,6 +141,7 @@ namespace SW01 {
 
     /**
      * get the temperature in degrees Celcius or Fahrenheit
+     * @param u the temperature unit
      */
     //% blockId="BME280_GET_TEMPERATURE" block="SW01 temperature %u"
     //% group="Variables"
@@ -152,6 +154,7 @@ namespace SW01 {
 
     /**
      * get the relative humidity (%)
+     * @param u the relative humidity unit
      */
     //% blockId="BME280_GET_HUMIDITY" block="SW01 humidity %u"
     //% group="Variables"
@@ -163,6 +166,7 @@ namespace SW01 {
 
     /**
      * turn the SW01 on or off
+     * @param on power on or off
      */
     //% blockId="BME280_POWER" block="SW01 power $on"
     //% group="Optional"
@@ -194,6 +198,7 @@ namespace SW01 {
 
     /**
      * calculates the dewpoint
+     * @param u the dew point temperature unit
      */
     //% block="SW01 dew point %u"
     //% group="Variables"
@@ -206,6 +211,7 @@ namespace SW01 {
 
     /**
      * calaulates the altitude using pressure and temperature
+     * @param u the altitude unit
      */
     //% block="SW01 altitude %u"
     //% group="Variables"
@@ -226,6 +232,7 @@ namespace SW01 {
 
     /**
      * set I2C address
+     * @param on on is I2C address 0x76, off is 0x77
      */
     //% blockId="BME280_SET_ADDRESS" block="SW01 address %on"
     //% group="Optional"
