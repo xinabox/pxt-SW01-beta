@@ -4,7 +4,8 @@
     "description": "XinaBox SW01 weather sensor: Pressure, Temperature and Humidity",
     "authors": [
         "Bjarke Gotfredsen",
-        "Brendan van Breda"
+        "Brendan van Breda",
+        "Shao Ziyang"
     ],
     "license": "MIT",
     "dependencies": {
