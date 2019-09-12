@@ -13,16 +13,18 @@ The SW01 uses a Bosch BME280 to report:
 
 This library provides functions that give you access to these variables, as well some measures that can be derived from them:
 * dewpoint
-* altitude
+* pressure altitude
+* density altitude
+* cloud base
 
 There are 3 other functions:
 * power on/off
-* set I2C address
+* set  address
 
 ## ~ hint
 
-By default the SW01 power is ON, and the I2C address is set correctly (to 0x76).
-You do NOT need to power on the SW01 or set the I2C address to use it
+By default the SW01 power is On, and the address is set correctly (to Off).
+You do NOT need to power on the SW01 or set the address to use it
 
 ## ~
 
@@ -38,10 +40,10 @@ A comprehensive set of How-to guides that show you how to use the blocks is avai
 
 ```blocks
 // Show the temperature in Celcius on the micro:bit 5x5 LED matrix:
-basic.showNumber(SW01.temperature(BME280_T.T_C))
+basic.showNumber(SW01.temperature(Temperature.Celcius))
 
 // Show the temperature in Celcius on the micro:bit 5x5 LED matrix:
-basic.showNumber(SW01.temperature(BME280_T.T_F))
+basic.showNumber(SW01.temperature(Temeperature.Celcius))
 
 ```
 
@@ -57,11 +59,11 @@ basic.showNumber(SW01.humidity())
 ## Core functions: Atmospheric pressure:
 
 ```blocks
-// Show the atmospheric pressure in Pascal on the micro:bit 5x5 LED matrix:
-basic.showNumber(SW01.pressure(BME280_P.Pa))
-
 // Show the atmospheric pressure in HectoPascals (Pascals / 100) on the micro:bit 5x5 LED matrix:
-basic.showNumber(SW01.pressure(BME280_P.hPa))
+basic.showNumber(SW01.pressure(Pressure.HectoPascal))
+
+// Show the atmospheric pressure in MilliBar (same as HectoPascal) on the micro:bit 5x5 LED matrix:
+basic.showNumber(SW01.pressure(Pressure.MilliBar))
 
 ```
 
