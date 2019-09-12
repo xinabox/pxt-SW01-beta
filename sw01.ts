@@ -4,36 +4,30 @@
  *   https://github.com/makecode-extensions/BME280
  */
 
-enum BME280_T {
+enum Temperature {
     //% block="ºC"
-    T_C = 0,
+    Celcius = 0,
     //% block="ºF"
-    T_F = 1
-}
-enum BME280_D {
-    //% block="ºC"
-    T_C = 0,
-    //% block="ºF"
-    T_F = 1
+    Fahrenheit = 1
 }
 
-enum BME280_P {
+enum Pressure {
     //% block="hPa"
-    hPa = 0,
+    HectoPascal = 0,
     //% block="mbar"
-    mbar = 1
+    MilliBar = 1
 }
 
-enum BME280_H {
+enum Humidity {
     //% block="%RH"
-    rh = 0
+    RelativeHumidity = 0
 }
 
-enum LENGTH_U {
+enum Length {
     //% block="meter"
-    METER = 0,
+    Meter = 0,
     //% block="feet"
-    FEET = 1
+    Feet = 1
 }
 
 /**
@@ -42,33 +36,33 @@ enum LENGTH_U {
 //% color=#444444 icon="\uf2dc"
 //% groups=['On start', 'Variables', 'Optional']
 namespace SW01 {
-    let BME280_I2C_ADDR = 0x76
+    let SW01_ADDR = 0x76
 
     function setreg(reg: number, dat: number): void {
         let buf = pins.createBuffer(2);
         buf[0] = reg;
         buf[1] = dat;
-        pins.i2cWriteBuffer(BME280_I2C_ADDR, buf);
+        pins.i2cWriteBuffer(SW01_ADDR, buf);
     }
 
     function getreg(reg: number): number {
-        pins.i2cWriteNumber(BME280_I2C_ADDR, reg, NumberFormat.UInt8BE);
-        return pins.i2cReadNumber(BME280_I2C_ADDR, NumberFormat.UInt8BE);
+        pins.i2cWriteNumber(SW01_ADDR, reg, NumberFormat.UInt8BE);
+        return pins.i2cReadNumber(SW01_ADDR, NumberFormat.UInt8BE);
     }
 
     function getInt8LE(reg: number): number {
-        pins.i2cWriteNumber(BME280_I2C_ADDR, reg, NumberFormat.UInt8BE);
-        return pins.i2cReadNumber(BME280_I2C_ADDR, NumberFormat.Int8LE);
+        pins.i2cWriteNumber(SW01_ADDR, reg, NumberFormat.UInt8BE);
+        return pins.i2cReadNumber(SW01_ADDR, NumberFormat.Int8LE);
     }
 
     function getUInt16LE(reg: number): number {
-        pins.i2cWriteNumber(BME280_I2C_ADDR, reg, NumberFormat.UInt8BE);
-        return pins.i2cReadNumber(BME280_I2C_ADDR, NumberFormat.UInt16LE);
+        pins.i2cWriteNumber(SW01_ADDR, reg, NumberFormat.UInt8BE);
+        return pins.i2cReadNumber(SW01_ADDR, NumberFormat.UInt16LE);
     }
 
     function getInt16LE(reg: number): number {
-        pins.i2cWriteNumber(BME280_I2C_ADDR, reg, NumberFormat.UInt8BE);
-        return pins.i2cReadNumber(BME280_I2C_ADDR, NumberFormat.Int16LE);
+        pins.i2cWriteNumber(SW01_ADDR, reg, NumberFormat.UInt8BE);
+        return pins.i2cReadNumber(SW01_ADDR, NumberFormat.Int16LE);
     }
 
     let dig_T1 = getUInt16LE(0x88)
@@ -139,10 +133,10 @@ namespace SW01 {
      * https://en.wikipedia.org/wiki/Atmospheric_pressure
      * @param u the pressure unit
      */
-    //% blockId="BME280_GET_PRESSURE" block="SW01 pressure %u"
+    //% blockId="SW01_GET_PRESSURE" block="SW01 pressure %u"
     //% group="Variables"
     //% weight=84 blockGap=8
-    export function pressure(u: BME280_P): number {
+    export function pressure(u: Pressure): number {
         get();
         return fix(P / 100);
     }
@@ -152,12 +146,12 @@ namespace SW01 {
      * https://en.wikipedia.org/wiki/Temperature
      * @param u the temperature unit
      */
-    //% blockId="BME280_GET_TEMPERATURE" block="SW01 temperature %u"
+    //% blockId="SW01_GET_TEMPERATURE" block="SW01 temperature %u"
     //% group="Variables"
     //% weight=88 blockGap=8
-    export function temperature(u: BME280_T): number {
+    export function temperature(u: Temperature): number {
         get();
-        if (u == BME280_T.T_C) return fix(T);
+        if (u == Temperature.Celcius) return fix(T);
         else return fix(32 + T * 9 / 5);
     }
 
@@ -166,10 +160,10 @@ namespace SW01 {
      * https://en.wikipedia.org/wiki/Relative_humidity
      * @param u the relative humidity unit
      */
-    //% blockId="BME280_GET_HUMIDITY" block="SW01 humidity %u"
+    //% blockId="SW01_GET_HUMIDITY" block="SW01 humidity %u"
     //% group="Variables"
     //% weight=86 blockGap=8
-    export function humidity(u: BME280_H): number {
+    export function humidity(u: Humidity): number {
         get();
         return fix(H);
     }
@@ -178,7 +172,7 @@ namespace SW01 {
      * Turn the SW01 on or off
      * @param on power on or off
      */
-    //% blockId="BME280_POWER" block="SW01 power $on"
+    //% blockId="SW01_POWER" block="SW01 power $on"
     //% group="Optional"
     //% weight=98 blockGap=8
     //% on.shadow="toggleOnOff"
@@ -187,7 +181,7 @@ namespace SW01 {
         else setreg(0xF4, 0)
     }
 
-    //% blockId="BME280_POWER_ON" block="SW01 power on"
+    //% blockId="SW01_POWER_ON" block="SW01 power on"
     //% group="Optional"
     //% weight=98 blockGap=8
     //% deprecated=true
@@ -198,7 +192,7 @@ namespace SW01 {
     /**
      * turn the SW01 off
      */
-    //% blockId="BME280_POWER_OFF" block="SW01 power off"
+    //% blockId="SW01_POWER_OFF" block="SW01 power off"
     //% group="Optional"
     //% weight=96 blockGap=8
     //% deprecated=true
@@ -218,9 +212,9 @@ namespace SW01 {
     //% block="SW01 dew point %u"
     //% group="Variables"
     //% weight=76 blockGap=8
-    export function dewpoint(u: BME280_D): number {
+    export function dewpoint(u: Temperature): number {
         get();
-        if (u == BME280_D.T_C) return fix(T - ((100 - H) / 5));
+        if (u == Temperature.Celcius) return fix(T - ((100 - H) / 5));
         else return fix(32 + ((T - ((100 - H)/ 5)) * 9/ 5));
     }
 
@@ -232,10 +226,10 @@ namespace SW01 {
     //% block="SW01 density altitude %u"
     //% group="Variables"
     //% weight=74 blockGap=8
-    export function densityAltitude(u: LENGTH_U): number {
+    export function densityAltitude(u: Length): number {
         get()
         let alt = (apow(101325 / P, 1 / 5.257) - 1.0) * (T + 273.15) / 0.0065
-        if (u == LENGTH_U.METER) return fix(alt);
+        if (u == Length.Meter) return fix(alt);
         else return fix(alt * 3.28084);
     }
 
@@ -247,10 +241,10 @@ namespace SW01 {
     //% block="SW01 pressure altitude %u"
     //% group="Variables"
     //% weight=74 blockGap=8
-    export function pressureAltitude(u: LENGTH_U): number {
+    export function pressureAltitude(u: Length): number {
         get()
         let alt = (1 - apow(P/101325, 0.190284)) * 145366.45
-        if (u == LENGTH_U.FEET) return fix(alt);
+        if (u == Length.Feet) return fix(alt);
         else return fix(alt * 0.3048);
     }
 
@@ -264,10 +258,10 @@ namespace SW01 {
     //% block="SW01 cloud base %u"
     //% group="Variables"
     //% weight=74 blockGap=8
-    export function cloudBase(u: LENGTH_U): number {
+    export function cloudBase(u: Length): number {
         get()
         let base = (T - (T - ((100 - H)/ 5)))/2.5 * 1000
-        if (u == LENGTH_U.FEET) return fix(base);
+        if (u == Length.Feet) return fix(base);
         else return fix(base * 0.3048);
     }
 
@@ -283,13 +277,13 @@ namespace SW01 {
      * Off: 0x77
      * @param on on is I2C address 0x76, off is 0x77
      */
-    //% blockId="BME280_SET_ADDRESS" block="SW01 address %on"
+    //% blockId="SW01_SET_ADDRESS" block="SW01 address %on"
     //% group="Optional"
     //% weight=50 blockGap=8
     //% on.shadow="toggleOnOff"
     export function address(on: boolean) {
-        if (on) BME280_I2C_ADDR = 0x76
-        else BME280_I2C_ADDR = 0x77
+        if (on) SW01_ADDR = 0x76
+        else SW01_ADDR = 0x77
     }
 
     function fix(x: number) {
