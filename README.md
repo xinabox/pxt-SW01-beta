@@ -1,76 +1,93 @@
 # XinaBox SW01 MakeCode extension
 
-This library provides functions to access environmental data from the [XinaBox SW01](https://xinabox.cc/products/sw01).
+This library provides functions to access environmental data from the [XinaBox SW01](https://xinabox.cc/products/cw01?_pos=1&_sid=130924612&_ss=r).
 
 ![](sw01.jpg)
 
-[Read more about it or purchase one here](https://xinabox.cc/products/sw01)
+[Read more about it or purchase one here](https://xinabox.cc/products/cw01?_pos=1&_sid=130924612&_ss=r)
 
-The SW01 uses a Bosch BME280 to report:
-* temperature 
-* humidity 
-* atmospheric pressure.
+The CW01 uses ESP8266 core to transimit and receive data.
+This libray enables you connect to IoT clouds specifically with:
+* AllThingsTalk
+* Ubidots
+* Microsoft Azure
 
-This library provides functions that give you access to these variables, as well some measures that can be derived from them:
-* dewpoint
-* pressure altitude
-* density altitude
-* cloud base
-
-There are 3 other functions:
-* power on/off
-* set  address
-
-## ~ hint
-
-By default the SW01 power is On, and the address is set correctly (to Off).
-You do NOT need to power on the SW01 or set the address to use it
-
-## ~
-
-
+There are functions to:
+* Connect to Wi-Fi
+* Connect to IoT platforms (ATT, Ubidots or Azure)
+* Transmit data
+* Receive data
 
 ## How-to guides:
 
 A comprehensive set of How-to guides that show you how to use the blocks is available online:
-[XinaBox How-to guides for the SW01 on BBC micro:bit using MakeCode](https://drive.google.com/open?id=1_oNXhgYeW0AHTLmRxomowxPdvNBCi0iS)
 
 
-## Core functions: Temperature:
+## Core functions: Common:
 
 ```blocks
-// Show the temperature in Celcius on the micro:bit 5x5 LED matrix:
-basic.showNumber(SW01.temperature(Temperature.Celcius))
-
-// Show the temperature in Celcius on the micro:bit 5x5 LED matrix:
-basic.showNumber(SW01.temperature(Temeperature.Celcius))
+// Connect to WiFi
+cw01HTTP.connectToWifi("SSID", "PSK")
 
 ```
 
 
-## Core functions: Humidity:
+## Core functions: AllThingsTalk:
 
 ```blocks
-// Show the relative humidity (as a percentage) on the micro:bit 5x5 LED matrix:
-basic.showNumber(SW01.humidity())
+// Connect
+cw01HTTP.connectToATT("TOKEN", "ID")
+
+//Send string data
+cw01HTTP.IoTSendStringToATT("string", "asset_name")
+
+//Send numerical data
+cw01HTTP.IoTSendValueToATT(0, "asset_name")
+
+//Send boolean data
+cw01HTTP.IoTSendStateToATT(false, "asset_name")
+
+//Get data
+cw01HTTP.IoTgetATTAssetValue("asset_name")
 
 ```
 
-## Core functions: Atmospheric pressure:
+## Core functions: Azure:
 
 ```blocks
-// Show the atmospheric pressure in HectoPascals (Pascals / 100) on the micro:bit 5x5 LED matrix:
-basic.showNumber(SW01.pressure(Pressure.HectoPascal))
+// Connect
+cw01HTTP.connectToAzure("access_endpoint")
 
-// Show the atmospheric pressure in MilliBar (same as HectoPascal) on the micro:bit 5x5 LED matrix:
-basic.showNumber(SW01.pressure(Pressure.MilliBar))
+//Send string data
+cw01HTTP.IoTSendStringToAzure("variable_name", "string")
+
+//Send numerical data
+cw01HTTP.IoTSendValueToAzure("variable_name", 0)
+
+//Send boolean data
+cw01HTTP.IoTSendStateToAzure("variable_name", false)
+
+//Get data
+cw01HTTP.IoTGetValueFromAzure("variable_name")
 
 ```
 
-## Attribution:
-The library is based on [BME280 Package from microbit/micropython Chinese community](https://github.com/makecode-extensions/BME280). 
+## Core functions: Ubidots:
 
-Thanks also to Shaoziyang for all the heavy lifting :)
+```blocks
+// Connect to Industrial or Education account type
+cw01HTTP.connectToUbidots(user.industrial, "TOKEN")
+
+//Send numerical data to variable in device. Select true to enter GPS location
+cw01HTTP.IoTSendValueToUbidots(0, "device_api", "variable_api", false)
+
+//Get data
+cw01HTTP.IoTgetValuefromUbidots("device_api", "variable_api")
+
+//Add GPS location, latitude and longitude
+cw01HTTP.IoTaddLocation(0, 0)
+
+```
   
 
 
@@ -83,8 +100,5 @@ Copyright (c) 2019, XinaBox Limited
 ## Supported targets:
 
 * PXT/microbit
-* PXT/CC03
-* PXT/CS11
-* PXT/CW03
 
 
