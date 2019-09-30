@@ -10,7 +10,6 @@
 //% color=#444444 icon="\uf2dc"
 //% groups=['On start', 'Variables', 'Optional']
 namespace SW01 {
-    
     export enum Temperature {
         //% block="ºC"
         Celcius = 0,
