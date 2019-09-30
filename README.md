@@ -40,10 +40,10 @@ A comprehensive set of How-to guides that show you how to use the blocks is avai
 
 ```blocks
 // Show the temperature in Celcius on the micro:bit 5x5 LED matrix:
-basic.showNumber(SW01.temperature(Temperature.Celcius))
+basic.showNumber(SW01.temperature(SW01.Temperature.Celcius))
 
 // Show the temperature in Celcius on the micro:bit 5x5 LED matrix:
-basic.showNumber(SW01.temperature(Temeperature.Celcius))
+basic.showNumber(SW01.temperature(SW01.Temeperature.Celcius))
 
 ```
 
@@ -60,10 +60,10 @@ basic.showNumber(SW01.humidity())
 
 ```blocks
 // Show the atmospheric pressure in HectoPascals (Pascals / 100) on the micro:bit 5x5 LED matrix:
-basic.showNumber(SW01.pressure(Pressure.HectoPascal))
+basic.showNumber(SW01.pressure(SW01.Pressure.HectoPascal))
 
 // Show the atmospheric pressure in MilliBar (same as HectoPascal) on the micro:bit 5x5 LED matrix:
-basic.showNumber(SW01.pressure(Pressure.MilliBar))
+basic.showNumber(SW01.pressure(SW01.Pressure.MilliBar))
 
 ```
 
