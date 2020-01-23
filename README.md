@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/xinabox/pxt-SW01.svg?branch=master)](https://travis-ci.org/xinabox/pxt-SW01)
+[![GitHub Issues](https://img.shields.io/github/issues/xinabox/pxt-SW01.svg)](https://github.com/xinabox/pxt-SW01/issues) ![GitHub Commit](https://img.shields.io/github/last-commit/xinabox/pxt-SW01) ![Maintained](https://img.shields.io/maintenance/yes/2020)
+
 # XinaBox SW01 MakeCode extension
 
 This library provides functions to access environmental data from the [XinaBox SW01](https://xinabox.cc/products/sw01).
