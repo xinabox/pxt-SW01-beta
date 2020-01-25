@@ -1,9 +1,8 @@
-
-#before_install:
-#  - sudo apt-get -y install libusb-1.0-0-dev libudev-dev
+before_install:
+  - sudo apt-get -y install libusb-1.0-0-dev libudev-dev
 language: node_js
 node_js:
-    - "8.9.4"
+    - "13.3"
 os: linux
 notifications:
   slack:
@@ -16,12 +15,12 @@ cache:
     - pxt_modules
 jobs:
   include:
-    #- stage: microbit
-    #  script: 
-    #    - "npm install -g pxt"
-    #    - "pxt target microbit"
-    #    - "pxt install"
-    #    - "pxt build --cloud"
+    - stage: microbit
+      script: 
+        - "npm install -g pxt"
+        - "pxt target microbit"
+        - "pxt install"
+        - "pxt build --cloud"
 
     - stage: maker
       script: 
