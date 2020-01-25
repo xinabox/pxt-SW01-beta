@@ -3,7 +3,7 @@ before_install:
 language: node_js
 node_js:
     - "13.3.0"
-sudo: false
+os: linux
 cache:
     directories:
     - npm_modules
