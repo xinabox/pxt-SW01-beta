@@ -20,6 +20,6 @@ jobs:
     - stage: maker
       script: 
         - "npm install -g pxt"
-        - "pxt target maker"
+        - "pxt target sample"
         - "pxt install"
         - "pxt build"
