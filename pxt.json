@@ -20,6 +20,5 @@
         "test.ts"
     ],
     "public": true,
-    "targetVersion": "2.1.43",
     "preferredEditor": "tsprj"
 }
