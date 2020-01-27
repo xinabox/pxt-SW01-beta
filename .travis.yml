@@ -14,6 +14,8 @@ script:
     - "npm install -g pxt"
     - "pxt target maker"
     - "pxt install"
+    - "ls -lah pxt_modules"
+    - "rm pxt_modules/test.ts"
     - "pxt build"
     - "rm -f -r pxt_modules"
     - "pxt target microbit"
