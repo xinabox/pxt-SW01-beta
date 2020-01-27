@@ -9,8 +9,7 @@
     ],
     "license": "MIT",
     "dependencies": {
-        "core": "*",
-        "adafruit-feather-m0-express": "*"
+        "core": "file:../core"
     },
     "files": [
         "README.md",
