@@ -28,7 +28,7 @@ jobs:
       - name: microbit
         run: |
           npm install -g pxt
-          pxt target microbit
+          pxt target maker
           pxt install
           pxt build --cloud
         env:
