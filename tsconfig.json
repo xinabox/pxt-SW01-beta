@@ -1,9 +1,3 @@
 {
-    "compilerOptions": {
-        "target": "es5",
-        "noImplicitAny": true,
-        "outDir": "built",
-        "rootDir": "."
-    },
-    "exclude": ["**/test.ts"]
+    "exclude": ["test.ts"]
 }
