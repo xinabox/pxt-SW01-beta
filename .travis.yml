@@ -18,4 +18,4 @@ script:
     #- "rm -f -r pxt_modules"
     #- "pxt target microbit"
     - "pxt install"
-    - "pxt build"
+    - "pxt build --cloud"
