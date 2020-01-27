@@ -9,7 +9,7 @@
     ],
     "license": "MIT",
     "dependencies": {
-        "core": "file:../core"
+        "core": ["*","file:../core"]
     },
     "files": [
         "README.md",
@@ -19,5 +19,6 @@
     "testFiles": [
         "test.ts"
     ],
-    "public": true
+    "public": true,
+    "preferredEditor": "tsprj"
 }
