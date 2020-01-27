@@ -1,15 +1,13 @@
 language: node_js
 node_js:
     - "8.9.4"
-os: linux
+#os: linux
 #notifications:
 #  slack:
 #    rooms:
 #      - xchips:YNUUwFmkbWCZWInBiHgwhsvU
 #    on_success: change
-cache:
-    directories:
-    - npm_modules
+
 script: 
     - "npm install -g pxt"
     - "pxt target maker"
@@ -18,4 +16,9 @@ script:
     #- "rm -f -r pxt_modules"
     #- "pxt target microbit"
     - "pxt install"
-    - "pxt build --cloud"
+    - "pxt build"
+sudo: false
+cache:
+    directories:
+    - npm_modules
+    - pxt_modules
