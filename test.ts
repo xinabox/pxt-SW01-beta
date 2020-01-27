@@ -1,4 +1,4 @@
-if(typeof basic === "undefined") {
+if(basic) {
     basic.forever(function () {
         SW01.powerOn()
         basic.showNumber(SW01.temperature(SW01.Temperature.Celcius))
