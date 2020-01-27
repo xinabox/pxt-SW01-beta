@@ -9,7 +9,8 @@
     ],
     "license": "MIT",
     "dependencies": {
-        "core": "*"
+        "core": "*",
+        "adafruit-feather-m0-express": "*"
     },
     "files": [
         "README.md",
@@ -18,9 +19,6 @@
     ],
     "testFiles": [
         "test.ts"
-    ],
-    "supportedTargets": [
-        "maker"
     ],
     "public": true,
     "preferredEditor": "blocksprj"
