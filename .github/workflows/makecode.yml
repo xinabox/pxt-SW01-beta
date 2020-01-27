@@ -17,7 +17,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: npm install
+      - name: maker
         run: |
           npm install -g pxt
           pxt target maker
@@ -25,9 +25,9 @@ jobs:
           pxt build --cloud
         env:
           CI: true
-      - name: npm install
+      - name: microbit
         run: |
-          rm -f -r pxt_modules
+          npm install -g pxt
           pxt target microbit
           pxt install
           pxt build --cloud
