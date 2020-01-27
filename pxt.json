@@ -9,7 +9,7 @@
     ],
     "license": "MIT",
     "dependencies": {
-        "core": ["*","file:../core"]
+        "core": "*"
     },
     "files": [
         "README.md",
@@ -19,6 +19,13 @@
     "testFiles": [
         "test.ts"
     ],
+    "targetVersions": {
+        "branch": "v0.11.47",
+        "tag": "v0.11.47",
+        "commits": "https://github.com/microsoft/pxt-maker/commits/ee990e7bb512372e9815316680c55ec25733eb0d",
+        "target": "0.11.47",
+        "pxt": "5.26.11"
+    },
     "public": true,
-    "preferredEditor": "tsprj"
+    "preferredEditor": "blocksprj",
 }
