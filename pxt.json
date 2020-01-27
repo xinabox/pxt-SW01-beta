@@ -16,6 +16,9 @@
         "sw01.ts",
         "_locales/zh/SW01-strings.json"
     ],
+    "testFiles": [
+        "test.ts"
+    ],
     "public": true,
     "preferredEditor": "blocksprj"
 }
