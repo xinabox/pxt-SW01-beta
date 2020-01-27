@@ -1,3 +1,4 @@
+/*
 basic.forever(function () {
     SW01.powerOn()
     basic.showNumber(SW01.temperature(SW01.Temperature.Celcius))
@@ -16,3 +17,4 @@ basic.forever(function () {
     SW01.powerOff()
     basic.pause(100)
 })
+*/
