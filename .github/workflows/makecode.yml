@@ -21,8 +21,14 @@ jobs:
         run: |
           npm install -g pxt
           pxt target maker
-      - name: build
+          pxt install
+          pxt build --cloud
+        env:
+          CI: true
+      - name: npm install
         run: |
+          rm -f -r pxt_modules
+          pxt target microbit
           pxt install
           pxt build --cloud
         env:
