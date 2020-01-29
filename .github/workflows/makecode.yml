@@ -17,6 +17,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      - uses: datamonsters/replace-action
+        with:
+          files: 'pxt.json'
+          replacements: 'core=xinabox-cs11' 
       - name: maker
         run: |
           npm install -g pxt
@@ -25,11 +29,15 @@ jobs:
           pxt build --cloud
         env:
           CI: true
-     # - name: microbit
-     #   run: |
-     #     npm install -g pxt
-     #     pxt target microbit
-     #     pxt install
-     #     pxt build --cloud
-     #   env:
-     #     CI: true
+      - uses: datamonsters/replace-action
+        with:
+          files: 'pxt.json'
+          replacements: 'core=microbit' 
+      - name: microbit
+        run: |
+          npm install -g pxt
+          pxt target microbit
+          pxt install
+          pxt build --cloud
+        env:
+          CI: true
