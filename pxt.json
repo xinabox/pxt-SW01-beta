@@ -9,16 +9,16 @@
     ],
     "license": "MIT",
     "dependencies": {
-        "xinabox.cc": "*"
+        "xinabox-cs11": "*"
     },
     "files": [
         "README.md",
         "sw01.ts",
         "_locales/zh/SW01-strings.json"
     ],
-    //"testFiles": [
-    //    "test.ts"
-    //],
+    "testFiles": [
+        "test.ts"
+    ],
     "public": true,
     "preferredEditor": "blocksprj"
 }
