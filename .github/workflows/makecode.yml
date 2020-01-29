@@ -32,4 +32,4 @@ jobs:
           pxt install
           pxt build --cloud
         env:
-          CI: false
+          CI: true
