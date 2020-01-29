@@ -20,11 +20,11 @@ jobs:
       - uses: datamonsters/replace-action@master
         with:
           files: 'pxt.json'
-          replacements: 'core=xinabox-cs11' 
-      - name: maker
+          replacements: 'core=microbit' 
+      - name: microbit
         run: |
           npm install -g pxt
-          pxt target maker
+          pxt target microbit
           pxt install
           pxt build --cloud
         env:
@@ -32,11 +32,11 @@ jobs:
       - uses: datamonsters/replace-action@master
         with:
           files: 'pxt.json'
-          replacements: 'xinabox-cs11=microbit' 
-      - name: microbit
+          replacements: 'microbit=xinabox-cs11,test.ts=' 
+      - name: maker
         run: |
           npm install -g pxt
-          pxt target microbit
+          pxt target maker
           pxt install
           pxt build --cloud
         env:
