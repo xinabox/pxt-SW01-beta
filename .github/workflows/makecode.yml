@@ -25,7 +25,6 @@ jobs:
           pxt build --cloud
         env:
           CI: true
-          core: xinabox-cs11 
       - name: microbit
         run: |
           npm install -g pxt
@@ -33,5 +32,4 @@ jobs:
           pxt install
           pxt build --cloud
         env:
-          CI: true
-          core: core 
+          CI: false
