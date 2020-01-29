@@ -17,7 +17,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - uses: datamonsters/replace-action
+      - uses: datamonsters/replace-action@master
         with:
           files: 'pxt.json'
           replacements: 'core=xinabox-cs11' 
@@ -29,7 +29,7 @@ jobs:
           pxt build --cloud
         env:
           CI: true
-      - uses: datamonsters/replace-action
+      - uses: datamonsters/replace-action@master
         with:
           files: 'pxt.json'
           replacements: 'core=microbit' 
