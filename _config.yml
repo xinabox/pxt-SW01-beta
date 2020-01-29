@@ -1,6 +1,0 @@
-makecode:
-  target: maker
-  platform: codal
-  home_url: https://maker.makecode.com/
-theme: jekyll-theme-slate
-include: assets
