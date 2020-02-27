@@ -1,0 +1,18 @@
+{
+    "SW01.pressure|block": "Pressure %u",
+    "SW01.temperature|block": "Temperature %u",
+    "SW01.humidity|block": "Humidity",
+    "SW01.Power|block": "Power",
+    "SW01.PowerOn|block": "Power On",
+    "SW01.PowerOff|block": "Power Off",
+    "SW01.Dewpoint|block": "Dewpoint",
+    "SW01.PressureBelowThan|block": "Pressure below %dat",
+    "SW01.PressureHigherThan|block": "Pressure higher than %dat",
+    "SW01.HumidityBelowThan|block": "Humidity below %dat",
+    "SW01.HumidityHigherThan|block": "Humidity higher than %dat",
+    "SW01.TemperatureBelowThan|block": "Temperature below %dat",
+    "SW01.TemperatureHigherThan|block": "Temperature higher than %dat",
+    "SW01.altitude|block": "Altitude",
+    "SW01.cloudbase|block": "Cloud base",
+    "SW01.Address|block": "Address %addr"
+}
