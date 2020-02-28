@@ -14,7 +14,7 @@
   "SW01.onOff|block": "SW01 power $on",
   "SW01.powerOff|block": "SW01 power off",
   "SW01.powerOn|block": "SW01 power on",
-  "SW01.pressureAltitude|block": "SW01 pressure altitude %u",
+  "SW01.pressureAltitude|block": "SW01 altitude de pression %u",
   "SW01.pressure|block": "SW01 pressure %u",
   "SW01.temperature|block": "SW01 temperature %u",
   "SW01|block": "SW01",
