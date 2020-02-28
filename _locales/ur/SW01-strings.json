@@ -12,13 +12,13 @@
   "SW01.dewpoint|block": "SW01 اوس کا وقت %u",
   "SW01.humidity|block": "SW01 نمی %u",
   "SW01.onOff|block": "SW01 power $on",
-  "SW01.powerOff|block": "SW01 power off",
-  "SW01.powerOn|block": "SW01 power on",
-  "SW01.pressureAltitude|block": "SW01 pressure altitude %u",
-  "SW01.pressure|block": "SW01 pressure %u",
-  "SW01.temperature|block": "SW01 temperature %u",
+  "SW01.powerOff|block": "SW01 بجلی بند",
+  "SW01.powerOn|block": "SW01 چلاؤ",
+  "SW01.pressureAltitude|block": "SW01 ہوا کے دباؤ سے اونچائی %u",
+  "SW01.pressure|block": "SW01 دباؤ %u",
+  "SW01.temperature|block": "SW01 درجہ حرارت %u",
   "SW01|block": "SW01",
   "{id:category}SW01": "SW01",
-  "{id:group}Optional": "Optional",
-  "{id:group}Variables": "Variables"
+  "{id:group}Optional": "اختیاری",
+  "{id:group}Variables": "متغیر"
 }
