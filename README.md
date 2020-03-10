@@ -3,6 +3,8 @@
 ![Maintained](https://img.shields.io/maintenance/yes/2020) 
 ![Build status badge](https://github.com/xinabox/pxt-SW01/workflows/maker/badge.svg)
 ![Build status badge](https://github.com/xinabox/pxt-SW01/workflows/microbit/badge.svg)
+![Developer](https://img.shields.io/badge/Developer-lb-blue)
+
 # XinaBox SW01 MakeCode extension
 
 This library provides functions to access environmental data from the [XinaBox SW01](https://xinabox.cc/products/sw01).
